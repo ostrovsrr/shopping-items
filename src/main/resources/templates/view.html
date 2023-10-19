@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>View; Rodion Ostrovski</title>
+</head>
+
+	<style>
+		.red-color {
+			color: red;
+		}
+
+		.green-color {
+			color: green;
+		}
+	</style>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Action</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Link</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${items}">
+				<td><a th:href="@{/delete/{id}(id=${item.id})}">Delete</a> <a th:href="@{/edit/{id}(id=${item.id})}">Modify</a></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.description}"></td>
+				<td th:text="${item.price}" th:class="${item.price} > 100 ? 'red-color' : 'green-color'"></td>
+				<td><a th:href="${item.link}">link</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<a th:href="@{/add}">Add an Item</a>
+</body>
+
+</html>
